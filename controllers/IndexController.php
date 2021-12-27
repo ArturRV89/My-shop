@@ -5,11 +5,14 @@ function testAction(){
 }
 
 
+// 
 // Формирование главной страницы сайта
+// 
 // @param object $smarty шаблонизатор
-
+// 
 
 function indexAction($smarty){
+    // объявление переменной
     $smarty->assign('pageTitle', 'Главная страница сайта');
     loadTemplate($smarty, 'index');
 }
