@@ -5,6 +5,8 @@
 // 
 
 
+
+
 // Формирование запрашиваемой страницы
 // 
 // @param string $controllerName название контроллера
@@ -19,7 +21,7 @@ function loadPage($smarty, $controllerName, $actionName = 'index'){
 }
 
 
-// 
+
 // загрузка шаблона
 // 
 // @param object $smarty объект шаблонизатора
@@ -29,6 +31,7 @@ function loadPage($smarty, $controllerName, $actionName = 'index'){
 function loadTemplate($smarty, $templateName){
     $smarty->display($templateName . TemplatePostfix);
 }
+
 
 
 // Функция отладки

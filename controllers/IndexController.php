@@ -14,5 +14,9 @@ function testAction(){
 function indexAction($smarty){
     // объявление переменной
     $smarty->assign('pageTitle', 'Главная страница сайта');
+
+
+    loadTemplate($smarty, 'header');
     loadTemplate($smarty, 'index');
+    loadTemplate($smarty, 'footer');
 }
