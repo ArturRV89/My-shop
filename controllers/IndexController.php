@@ -1,5 +1,11 @@
 <?php
+
+// 
 // Контроллер главной страницы
+// 
+
+include_once ('../models/CategoriesModel.php');
+
 function testAction(){
     print 'IndexController.php > testAction';
 }
@@ -12,9 +18,9 @@ function testAction(){
 // 
 
 function indexAction($smarty){
-    // объявление переменной
-    $smarty->assign('pageTitle', 'Главная страница сайта');
+    $rsCategories = getAllMainCatsWithChildren();
 
+    $smarty->assign('pageTitle', 'Главная страница сайта');
 
     loadTemplate($smarty, 'header');
     loadTemplate($smarty, 'index');

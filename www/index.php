@@ -1,6 +1,7 @@
 <?php
 
 include_once ('../config/config.php'); //инициализация настроек
+include_once ('../config/db.php'); // инициализация базы данных
 include_once ('../library/mainFunctions.php'); //основные функции
 
 // определяем каким контроллером будем работать
