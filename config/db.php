@@ -9,6 +9,7 @@ $dbname = "shop";
 $dbuser = "root";
 $dbpasswd = "";
 
+// подключаемся к БД
 $db = mysql_connect ($dblocation, $dbuser, $dbpasswd, $dbname);
 
 if (! $db){
@@ -16,7 +17,7 @@ if (! $db){
     exit();
 }
 
-// устанавливаем кодировку по умолчанию
+// кодировка по умолчанию
 mysql_set_charset ('utf8');
 
 if (! mysql_select_db ($dbname, $db)){
