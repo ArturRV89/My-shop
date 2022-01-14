@@ -2,7 +2,7 @@
 
 
         <div id="footer">
-            footer
+            FOOTER
         </div>
 
     </body>

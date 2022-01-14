@@ -11,7 +11,6 @@
 // @param string $controllerName название контроллера
 // @param string $actionName название функции обработки страницы
 // 
-
 function loadPage($smarty, $controllerName, $actionName = 'index'){
     include_once (PathPrefix . $controllerName . PathPostfix);
 
@@ -26,7 +25,6 @@ function loadPage($smarty, $controllerName, $actionName = 'index'){
 // @param object $smarty объект шаблонизатора
 // @param string $templateName название файла шаблона
 // 
-
 function loadTemplate($smarty, $templateName){
     $smarty->display($templateName . TemplatePostfix);
 }
@@ -38,7 +36,6 @@ function loadTemplate($smarty, $templateName){
 // 
 // @param variant $value - переменная для вывода ее на страницу
 // 
-
 function d($value = null, $die = 1){
     print 'Debug: <br><pre>';
     print_r ($value);
@@ -54,7 +51,6 @@ function d($value = null, $die = 1){
 // @param recordset $rs набор строк - результат работы SELECT
 // @return array
 // 
-
 function createSmartyRsArray($rs){
     if (!$rs) return false;
     $smartyRs = array();
