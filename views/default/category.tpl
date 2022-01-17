@@ -5,7 +5,7 @@
     {foreach $rsProducts as $item name=products}
         <div style="float: left; padding: 0px 30px 40px 0px;">
             <a href="/product/{$item['id']}/">
-                <img src="/images/products/{$item['image']}" width="120">
+                <img src="/images/products/{$item['image']}" width="100">
             </a><br>
             <a href="/product/{$item['id']}/">{$item['name']}</a>
         </div>
@@ -14,8 +14,7 @@
             <div style="clear: both;"></div>
         {/if}
 
-    {foreachelse}
-        Ничего не найдено
+   
 
     {/foreach}
 
@@ -24,7 +23,6 @@
     {foreach $rsChildCats as $item name=childCats}
         <h2><a href="/category/{$item['id']}/">{$item['name']}</a></h2>
 
-    {foreachelse}
-        Ничего не найдено
+   
 
     {/foreach}
