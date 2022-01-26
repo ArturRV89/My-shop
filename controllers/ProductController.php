@@ -17,7 +17,7 @@ function indexAction ($smarty){
     // получить данные продукта
     $rsProduct = getProductById($itemId);
 
-    // получить все категории
+    // получить все категории, для получения главного меню сайта
     $rsCategories = getAllMainCatsWithChildren();
     
     $smarty->assign('pageTitle', '');
