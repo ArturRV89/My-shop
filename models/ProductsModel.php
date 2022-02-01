@@ -12,7 +12,8 @@
 // @return array Массив товаров
 // 
 
-function getLastProducts($limit = null){
+function getLastProducts($limit = null)
+{
     $sql = "SELECT *
                 FROM `products`
                 ORDER BY `id` DESC";
@@ -33,7 +34,8 @@ function getLastProducts($limit = null){
 // @param array массив продуктов
 // 
 
-function getProductsByCat($itemId){
+function getProductsByCat($itemId)
+{
     $itemId = intval($itemId);
     $sql = "SELECT * 
                 FROM products
@@ -52,7 +54,8 @@ function getProductsByCat($itemId){
 // @return array массив данных продукта
 // 
 
-function getProductById($itemId){
+function getProductById($itemId)
+{
     $itemId = intval($itemId);
     
     $sql = "SELECT * 
@@ -62,3 +65,21 @@ function getProductById($itemId){
     $rs = mysql_query($sql);
     return mysql_fetch_assoc($rs);
 }   
+
+
+
+// Получить список продуктов из массива идентификаторов (ID's)
+// 
+// @param array $itemsIds массив идентификаторов продуктов
+// @return array массив данных продуктов
+// 
+function getProductsFromArray($itemsIds)
+{
+    $strIds = implode($itemsIds, ', ');
+    $sql = "SELECT *
+                FROM products
+                WHERE id in ({$strIds})";
+    $rs = mysql_query($sql);
+    
+    return createSmartyRsArray($rs);
+}
