@@ -10,7 +10,9 @@
 // @param integer $catId ID категории
 // @return array массив дочерних категорий
 // 
-function getChildrenForCat($catId){
+
+function getChildrenForCat($catId)
+{
     $sql = "SELECT * 
                FROM 
                categories 
@@ -27,7 +29,9 @@ function getChildrenForCat($catId){
 // 
 // @return array - массив категорий
 // 
-function getAllMainCatsWithChildren(){
+
+function getAllMainCatsWithChildren()
+{
     $sql = "SELECT * 
                 FROM 
                 categories 
@@ -53,12 +57,15 @@ function getAllMainCatsWithChildren(){
 // @param integer $catId ID категории
 // @return array массив - строка категории
 // 
-function getCatById($catId){
+
+function getCatById($catId)
+{
     $catId = intval ($catId);
     $sql = "SELECT * 
                 FROM categories
                 WHERE
                 id = '{$catId}'";
+                
     $rs = mysql_query ($sql);
     return mysql_fetch_assoc ($rs);
 }

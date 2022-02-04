@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2022-02-01 11:37:42
+/* Smarty version 3.1.39, created on 2022-02-04 13:48:31
   from 'C:\xampp\htdocs\myshop.local\views\default\product.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61f90d7611c6e7_11679447',
+  'unifunc' => 'content_61fd209f3f29d8_59715335',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7f2407d13ceb470ce5973199d3408a2b5a1e5d0f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\myshop.local\\views\\default\\product.tpl',
-      1 => 1643711811,
+      1 => 1643780930,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61f90d7611c6e7_11679447 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61fd209f3f29d8_59715335 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <h3><?php echo $_smarty_tpl->tpl_vars['rsProduct']->value['name'];?>
 </h3>

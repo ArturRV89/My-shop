@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.39, created on 2022-02-01 15:36:55
+/* Smarty version 3.1.39, created on 2022-02-04 13:48:35
   from 'C:\xampp\htdocs\myshop.local\views\default\cart.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61f94587690223_46564017',
+  'unifunc' => 'content_61fd20a3d86240_26297220',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61f94587690223_46564017 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61fd20a3d86240_26297220 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <h2>Корзина</h2>
 

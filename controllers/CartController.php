@@ -18,6 +18,7 @@ include_once ('../models/ProductsModel.php');
 // @param integer id GET параметр - ID добавляемого продукта
 // @return json информация об операции (успех, кол-во элементов в корзине)
 // 
+
 function addtocartAction()
 {
     $itemId = isset ($_GET['id']) ? intval ($_GET['id']) : null;
@@ -42,6 +43,7 @@ function addtocartAction()
 // @param integer id GET параметр - ID удаляемого из корзины продукта
 // @return json информация об операции (успех, кол-во элементов в корзине)
 // 
+
 function removefromcartAction()
 {
     $itemId = isset ($_GET['id']) ? intval ($_GET['id']) : null;
@@ -65,7 +67,9 @@ function removefromcartAction()
 // 
 // @link /cart/
 // 
-function indexAction($smarty){
+
+function indexAction($smarty)
+{
     $itemsIds = isset ($_SESSION['cart']) ? $_SESSION['cart'] : array();
 
     $rsCategories = getAllMainCatsWithChildren();

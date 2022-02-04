@@ -16,8 +16,10 @@ define('TemplatePostfix', '.tpl');
 //пути к файлам шаблонов в вебпространстве
 define('TemplateWebPath', "/templates/{$template}/");
 
+
+
+// Инициализация шаблонизатора Smarty
 // 
-//Инициализация шаблонизатора Smarty
 // put full path to Smarty.class.php
 // 
 

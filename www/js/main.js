@@ -7,6 +7,7 @@
 // @param integer itemId - ID продукта
 // @return в случае успеха обновятся данные корзины на странице
 // 
+
 function addToCart(itemId)
 {
     console.log("js - addToCart()");
@@ -14,7 +15,6 @@ function addToCart(itemId)
         type: 'POST',
         url: "/cart/addtocart/" + itemId + '/',
         dataType: 'json',
-        async: false,
         success: function (data) {
             if ( data['success']){
                 $('#cartCntItems').html(data['cntItems']);
@@ -33,12 +33,12 @@ function addToCart(itemId)
 // @param integer itemId - ID продукта
 // @return в случае успеха обновляется данные корзины на странице
 // 
+
 function removeFromCart(itemId) 
 {
     console.log("js - removeFromCart("+itemId+")");
     $.ajax({
         method: 'POST',
-        async: false,
         url: "/cart/removefromcart/" + itemId + '/',
         dataType: 'json',
         success: function (data) {
@@ -50,7 +50,6 @@ function removeFromCart(itemId)
             }
         }
     });
-    
 }
 
 
@@ -59,10 +58,59 @@ function removeFromCart(itemId)
 // 
 // @param integer itemId ID продукта
 // 
-function conversionPrice(itemId) {
+
+function conversionPrice(itemId) 
+{
     var newCnt = $('#itemCnt_'+ itemId).val();
     var itemPrice = $('#itemPrice_'+ itemId).attr('value');
     var itemRealPrice = newCnt * itemPrice;
 
     $('#itemRealPrice_' + itemId).html(itemRealPrice);
+}
+
+
+
+// получение данных с формы
+// 
+// @param obj_form - формы для заплнения
+// 
+
+function getData(obj_form) 
+{
+    var hData = {};
+    $('input, textarea, select' , obj_form).each (function(){
+        if (this.name && this.name != '') {
+            hData[this.name] = this.value;
+            console.log('hData[' + this.name + '] = ' + hData[this.name]);
+        }
+    });
+    return hData;
+}
+
+
+
+// 
+// регистрация нового пользователя
+// 
+
+function registerNewUser() 
+{
+    var postData = getData ('#registerBox');
+    
+    $.ajax ({
+        type: 'POST',
+        url: "/user/register/",
+        data: postData,
+        dataType: 'json',
+        success: function (data) {
+            if (data['success']) {
+                alert ('Регистрация прошла успешно');
+
+                // блок в левом столбце
+                $('#registerBox').hide();
+            } else {
+                alert(data['message']);
+            }
+        }
+    });
 }

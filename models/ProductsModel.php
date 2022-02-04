@@ -73,6 +73,7 @@ function getProductById($itemId)
 // @param array $itemsIds массив идентификаторов продуктов
 // @return array массив данных продуктов
 // 
+
 function getProductsFromArray($itemsIds)
 {
     $strIds = implode($itemsIds, ', ');

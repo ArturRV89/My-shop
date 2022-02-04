@@ -10,7 +10,8 @@ include_once ('../models/ProductsModel.php');
 //  @param object $smarty шаблонизатор
 // 
 
-function indexAction ($smarty){
+function indexAction ($smarty)
+{
     $itemId = isset($_GET['id']) ? $_GET['id'] : null;
     if ($itemId == null) exit();
 

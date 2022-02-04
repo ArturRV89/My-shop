@@ -1,5 +1,6 @@
 <?php
 
+// 
 // Кантроллер страницы категории (/category/1)
 // 
 
@@ -16,7 +17,8 @@ include_once ('../models/ProductsModel.php');
 // @param object $smarty шаблонизатор
 // 
 
-function indexAction($smarty){
+function indexAction($smarty)
+{
     $catId = isset($_GET['id']) ? $_GET['id'] : null;
     if ($catId == null) exit();
     
@@ -30,8 +32,7 @@ function indexAction($smarty){
     // иначе показываем товар
     if ($rsCategory['parent_id'] == 0){
         $rsChildCats = getChildrenForCat($catId);
-    }
-    else {
+    } else {
         $rsProducts = getProductsByCat($catId);
     }
 
