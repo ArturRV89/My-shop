@@ -23,8 +23,7 @@ function registerNewUser($email, $pwdMD5, $name, $phone, $adress)
     $phone = htmlspecialchars(mysql_real_escape_string($phone));   
     $adress = htmlspecialchars(mysql_real_escape_string($adress));   
 
-    $sql = "INSERT INTO
-                `users` (`email`, `pwd`, `name`, `phone`, `adress`)
+    $sql = "INSERT INTO `users` (`email`, `pwd`, `name`, `phone`, `adress`)
                 VALUE ('{$email}', '{$pwdMD5}', '{$name}', '{$phone}', '{$adress}')";
 
     $rs = mysql_query($sql);
@@ -35,6 +34,7 @@ function registerNewUser($email, $pwdMD5, $name, $phone, $adress)
                     WHERE (`email` = '{$email}' 
                     AND `pwd` = '{$pwdMD5}')
                     LIMIT 1";
+
         $rs = mysql_query($sql);
         $rs = createSmartyRsArray($rs);
 
@@ -67,7 +67,7 @@ function checkRegisterParams ($email, $pwd1, $pwd2)
 
         if ( ! $email){
             $res['success'] = 0;
-            $res['massage'] = 'Введите email';
+            $res['message'] = 'Введите email';
         }
 
         if ( ! $pwd1){
@@ -101,10 +101,35 @@ function checkUserEmail ($email)
     $email = mysql_real_escape_string ($email);
     $sql = "SELECT `id` 
                 FROM `users` 
-                WHERE (`email` = '{$email}')";
+                WHERE (`email` = '{$email}')
+                LIMIT 1";
 
-    $rs = mysql_query ($sql);
+    $rs = mysql_query($sql);
     $rs = createSmartyRsArray($rs);
 
+    return $rs;
+}
+
+
+
+function loginUser ($email, $pwd)
+{
+    $email = htmlspecialchars(mysql_real_escape_string($email));
+    $pwd = md5($pwd);
+
+    $sql = "SELECT * 
+                FROM users  
+                WHERE (`email` = '{$email}' AND `pwd` = '{$pwd}')
+                LIMIT 1";
+
+    $rs = mysql_query($sql);
+    $rs = createSmartyRsArray($rs);
+
+    if (isset ($rs[0])){
+        $rs['success'] = 1;
+    } else {
+        $rs['success'] = 0;
+    }
+    
     return $rs;
 }

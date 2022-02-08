@@ -22,7 +22,7 @@ function registerAction()
 {
     $email = isset ($_REQUEST['email']) ? $_REQUEST['email'] : null;
     $email = trim ($email);
-    
+
     $pwd1 = isset ($_REQUEST['pwd1']) ? $_REQUEST['pwd1'] : null;
     $pwd2 = isset ($_REQUEST['pwd2']) ? $_REQUEST['pwd2'] : null;
 
@@ -44,7 +44,7 @@ function registerAction()
 
         $userData = registerNewUser ($email, $pwdMD5, $name, $phone, $adress);
         if ($userData['success']){
-            $resData['message'] = 'Пользователь успешно зарегистрировани';
+            $resData['message'] = 'Пользователь успешно зарегистрирован';
             $resData['success'] = 1;
 
             $userData = $userData[0];
@@ -59,5 +59,58 @@ function registerAction()
         }
     }
     
+    print json_encode ($resData);
+}
+
+
+
+// 
+// Разлогинивание пользователя
+// 
+
+function logoutAction ()
+{
+    if (isset ($_SESSION['user'])){
+        unset ($_SESSION['user']);
+        unset ($_SESSION['cart']);
+    }
+
+    redirect ('/');
+}
+
+
+
+// ajax авторизация пользователя
+// 
+// @return json массив данных пользователя
+// 
+
+function loginAction ()
+{
+    $email = isset ($_REQUEST['email']) ? $_REQUEST['email'] : null;
+    $email = trim ($email);
+
+    $pwd = isset ($_REQUEST['pwd']) ? $_REQUEST['pwd'] : null;
+    $pwd = trim ($pwd);
+
+    $userData = loginUser ($email, $pwd);
+
+    if ($userData['success']){
+        $userData = $userData[0];
+        
+        $_SESSION['user'] = $userData;
+        $_SESSION['user']['displayName'] = $userData['name'] ? $userData['name'] : $userData['email'];
+
+        $resData = $_SESSION['user'];
+        $resData['success'] = 1;
+
+		//$resData['userName'] = $userData['name'] ? $userData['name'] : $userData['email'];
+        //$resData['userEmail'] = $email;
+        
+    } else {
+        $resData['success'] = 0;
+        $resData['message'] = 'Неверный логин или пароль';
+    }
+
     print json_encode ($resData);
 }

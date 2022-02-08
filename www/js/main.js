@@ -96,7 +96,6 @@ function getData(obj_form)
 function registerNewUser() 
 {
     var postData = getData ('#registerBox');
-    
     $.ajax ({
         type: 'POST',
         url: "/user/register/",
@@ -104,10 +103,48 @@ function registerNewUser()
         dataType: 'json',
         success: function (data) {
             if (data['success']) {
-                alert ('Регистрация прошла успешно');
+                alert (data['message']);
 
                 // блок в левом столбце
                 $('#registerBox').hide();
+
+                $('#userLink').attr('href', '/user/');
+                $('#userLink').html(data['userName']);
+                $('#userBox').show();
+            } else {
+                alert(data['message']);
+            }
+        }
+    });
+}
+
+
+
+// 
+// авторизация пользователя
+// 
+
+function login() 
+{
+    var email = $('#loginEmail').val();
+    var pwd = $('#loginPwd').val();
+
+    var postData = "email="+ email +"&pwd=" +pwd;
+
+    $.ajax({
+        type: 'POST',
+        url: "/user/login/",
+        data: postData,
+        dataType: 'json',
+        success: function (data){
+            if (data['success']){
+                $('#registerBox').hide();
+                $('#loginBox').hide();
+
+                $('#userLink').attr('href', '/user/');
+                $('#userLink').html(data['displayName']);
+                $('#userBox').show();
+                
             } else {
                 alert(data['message']);
             }
