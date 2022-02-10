@@ -128,9 +128,9 @@ function login()
 {
     var email = $('#loginEmail').val();
     var pwd = $('#loginPwd').val();
-
+    
     var postData = "email="+ email +"&pwd=" +pwd;
-
+    
     $.ajax({
         type: 'POST',
         url: "/user/login/",
@@ -147,6 +147,61 @@ function login()
                 
             } else {
                 alert(data['message']);
+            }
+        }
+    });
+}
+
+
+
+// 
+// прячем меню регистрации
+// 
+
+function showRegisterBox() {
+    if ($('#registerBoxHidden').css('display') != 'block'){
+        $('#registerBoxHidden').show();
+
+    } else {
+        $('#registerBoxHidden').hide();
+    }
+}
+
+
+
+// 
+// обновление данных пользователя
+// дедовским способом
+// 
+
+function updateUserData() {
+    console.log('js - updateUserData()');
+
+    var name = $('#newName').val();
+    var phone = $('#newPhone').val();
+    var adress = $('#newAdress').val();
+    var pwd1 = $('#newPwd1').val();
+    var pwd2 = $('#newPwd2').val();
+    var curPwd = $('#curPwd').val();
+    
+    var postData = {name: name,
+                            phone: phone,
+                            adress: adress,
+                            pwd1: pwd1,
+                            pwd2: pwd2,
+                            curPwd: curPwd};
+
+    $.ajax({
+        type: 'POST',
+        url: "/user/update/",
+        data: postData,       
+        dataType: 'json',
+        success: function (data){
+            if (data['success']) {
+                $('#userLink').html(data['userName']);
+                alert (data['message']);
+            } else {
+                alert (data['message']);
             }
         }
     });

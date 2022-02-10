@@ -7,9 +7,13 @@ if ( ! isset ($_SESSION['cart'])){
     $_SESSION['cart'] = array();
 }
 
+
+
 include_once ('../config/config.php'); //инициализация настроек
 include_once ('../config/db.php'); // инициализация базы данных
 include_once ('../library/mainFunctions.php'); //основные функции
+
+
 
 // определяем каким контроллером будем работать
 $controllerName = isset($_GET['controller']) ? filter_var(ucfirst($_GET['controller'])) : 'index';
@@ -17,7 +21,16 @@ $controllerName = isset($_GET['controller']) ? filter_var(ucfirst($_GET['control
 // определяем какой функцией будем работать
 $actionName = isset($_GET['action']) ? filter_var($_GET['action']) : 'index';
 
+
+
+// если в сессии есть данные об авторизированном пользователе, то передаем их в шаблон
+if (isset ($_SESSION['user'])){
+    $smarty->assign('arUser', $_SESSION['user']);
+}
+
 // инициализируем переменную шаблонизатора кол-ва элементов в корзине
 $smarty->assign('cartCntItems', count($_SESSION['cart']));
+
+
 
 loadPage($smarty, $controllerName, $actionName);
