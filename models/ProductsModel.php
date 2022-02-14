@@ -39,7 +39,7 @@ function getProductsByCat($itemId)
     $itemId = intval($itemId);
     $sql = "SELECT * 
                 FROM products
-                WHERE category_id = '{$itemId}'";
+                WHERE `category_id` = '{$itemId}'";
     
     $rs = mysql_query($sql);
 
@@ -60,7 +60,7 @@ function getProductById($itemId)
     
     $sql = "SELECT * 
                FROM products 
-               WHERE id = '{$itemId}'";
+               WHERE `id` = '{$itemId}'";
 
     $rs = mysql_query($sql);
     return mysql_fetch_assoc($rs);
@@ -79,8 +79,8 @@ function getProductsFromArray($itemsIds)
     $strIds = implode($itemsIds, ', ');
     $sql = "SELECT *
                 FROM products
-                WHERE id in ({$strIds})";
+                WHERE `id` in ({$strIds})";
+
     $rs = mysql_query($sql);
-    
     return createSmartyRsArray($rs);
 }

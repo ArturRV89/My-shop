@@ -24,14 +24,15 @@ function indexAction($smarty)
     
     $rsCategory = getCatById($catId);
 
-    // инициализация переменных
     $rsProducts = null;
     $rsChildCats = null;
+	$rsCategory = getCatById($catId);
 
     // если главная категория то показываем дечернии категории,
     // иначе показываем товар
     if ($rsCategory['parent_id'] == 0){
         $rsChildCats = getChildrenForCat($catId);
+
     } else {
         $rsProducts = getProductsByCat($catId);
     }

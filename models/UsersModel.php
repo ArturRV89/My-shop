@@ -24,7 +24,7 @@ function registerNewUser($email, $pwdMD5, $name, $phone, $adress)
     $adress = htmlspecialchars(mysql_real_escape_string($adress));   
 
     $sql = "INSERT INTO `users` (`email`, `pwd`, `name`, `phone`, `adress`)
-                VALUE ('{$email}', '{$pwdMD5}', '{$name}', '{$phone}', '{$adress}')";
+                VALUES ('{$email}', '{$pwdMD5}', '{$name}', '{$phone}', '{$adress}')";
 
     $rs = mysql_query($sql);
 

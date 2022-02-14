@@ -1,5 +1,11 @@
 <?php
 
+// ProductController.php
+// 
+// контроллер страницы товара (/product/1)
+// 
+
+
 include_once ('../models/CategoriesModel.php');
 include_once ('../models/ProductsModel.php');
 
@@ -22,7 +28,7 @@ function indexAction ($smarty)
     $rsCategories = getAllMainCatsWithChildren();
     
     $smarty->assign('itemInCart', 0);
-    if (in_array($itemId, $_SESSION['cart'])){
+    if (in_array ($itemId, $_SESSION['cart'])){
         $smarty->assign('itemInCart', 1);
     }
 

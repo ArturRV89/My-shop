@@ -15,11 +15,11 @@ include_once ('../library/mainFunctions.php'); //основные функции
 
 
 
-// определяем каким контроллером будем работать
-$controllerName = isset($_GET['controller']) ? filter_var(ucfirst($_GET['controller'])) : 'index';
+// определяем с каким контроллером будем работать
+$controllerName = isset($_GET['controller']) ? ucfirst($_GET['controller']) : 'Index';
 
-// определяем какой функцией будем работать
-$actionName = isset($_GET['action']) ? filter_var($_GET['action']) : 'index';
+// определяем с какой функцией будем работать
+$actionName = isset($_GET['action']) ? $_GET['action'] : 'index';
 
 
 
@@ -30,7 +30,5 @@ if (isset ($_SESSION['user'])){
 
 // инициализируем переменную шаблонизатора кол-ва элементов в корзине
 $smarty->assign('cartCntItems', count($_SESSION['cart']));
-
-
 
 loadPage($smarty, $controllerName, $actionName);

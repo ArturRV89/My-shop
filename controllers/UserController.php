@@ -53,6 +53,7 @@ function registerAction()
 
             $_SESSION['user'] = $userData;
             $_SESSION['user']['displayName'] = $userData['name'] ? $userData['name'] : $userData['email'];
+        
         } else {
             $resData['success'] = 0;
             $resData['message'] = 'Ошибка регистрации';
@@ -166,7 +167,7 @@ function updateAction()
 
     // проверка правильности пароля (введенный и тот под которым залогинились)
     $curPwdMD5 = md5 ($curPwd);
-    if ( ! $curPwdMD5 || ($_SESSION['user']['pwd'] != $curPwdMD5)){
+    if ( ! $curPwd || ($_SESSION['user']['pwd'] != $curPwdMD5)){
         $resData['success'] = 0;
         $resData['message'] = 'Текущий пароль не верный';
 
@@ -186,19 +187,19 @@ function updateAction()
         $_SESSION['user']['phone'] = $phone;
         $_SESSION['user']['adress'] = $adress;
 
-        $newPwd = null;
-        $newPwd = $_SESSION['user']['pwd'];
-        if ($pwd1 && ($pwd1 == $pwd2)){
-            $newPwd = trim($pwd1);
-        }
-
+		$newPwd = $_SESSION['user']['pwd'];
+            if ($pwd1 && ($pwd1 == $pwd2)){
+                $newPwd = md5(trim($pwd1));
+            }
+            
         $_SESSION['user']['pwd'] = $newPwd;
-        
+
         $_SESSION['user']['displayName'] = $name ? $name : $_SESSION['user']['email'];
 
     } else {
         $resData['success'] = 0;
         $resData['message'] = 'Ошибка сохранения данных';
     }
+
     print json_encode ($resData);
 }

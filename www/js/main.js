@@ -1,9 +1,5 @@
-// 
 // Функция добавления товара в корзину
 // 
-
-
-
 // @param integer itemId - ID продукта
 // @return в случае успеха обновятся данные корзины на странице
 // 
@@ -13,6 +9,7 @@ function addToCart(itemId)
     console.log("js - addToCart()");
     $.ajax({
         type: 'POST',
+        async: false,
         url: "/cart/addtocart/" + itemId + '/',
         dataType: 'json',
         success: function (data) {
@@ -39,6 +36,7 @@ function removeFromCart(itemId)
     console.log("js - removeFromCart("+itemId+")");
     $.ajax({
         method: 'POST',
+        async: false,
         url: "/cart/removefromcart/" + itemId + '/',
         dataType: 'json',
         success: function (data) {
@@ -98,6 +96,7 @@ function registerNewUser()
     var postData = getData ('#registerBox');
     $.ajax ({
         type: 'POST',
+        async: false,
         url: "/user/register/",
         data: postData,
         dataType: 'json',
@@ -133,6 +132,7 @@ function login()
     
     $.ajax({
         type: 'POST',
+        async: false,
         url: "/user/login/",
         data: postData,
         dataType: 'json',
@@ -144,6 +144,8 @@ function login()
                 $('#userLink').attr('href', '/user/');
                 $('#userLink').html(data['displayName']);
                 $('#userBox').show();
+                
+                $('#btnSaveOrder').show();
                 
             } else {
                 alert(data['message']);
@@ -158,7 +160,8 @@ function login()
 // прячем меню регистрации
 // 
 
-function showRegisterBox() {
+function showRegisterBox() 
+{
     if ($('#registerBoxHidden').css('display') != 'block'){
         $('#registerBoxHidden').show();
 
@@ -174,7 +177,8 @@ function showRegisterBox() {
 // дедовским способом
 // 
 
-function updateUserData() {
+function updateUserData() 
+{
     console.log('js - updateUserData()');
 
     var name = $('#newName').val();
@@ -193,6 +197,7 @@ function updateUserData() {
 
     $.ajax({
         type: 'POST',
+        async: false,
         url: "/user/update/",
         data: postData,       
         dataType: 'json',
