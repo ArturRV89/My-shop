@@ -59,6 +59,9 @@
                 </tr>
             </table>
         </div>
+
+
+
     {else}
         <div id="loginBox">
             <div class="menuCaption">Авторизация</div>
@@ -78,6 +81,8 @@
             </table>
         </div>
 
+
+        
         <div id="registerBox">или <br/>
             <div class="menuCaption">Регистрация нового пользователя:</div>
             email* <br/>

@@ -32,6 +32,7 @@
         </div>
 
 
+
         {if ! isset ($hideLoginBox)}
             <div id="loginBox">
                 <div class="menuCaption">Авторизация</div>

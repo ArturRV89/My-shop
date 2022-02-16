@@ -145,8 +145,13 @@ function login()
                 $('#userLink').html(data['displayName']);
                 $('#userBox').show();
                 
-                $('#btnSaveOrder').show();
+                // заполняем поля на странице заказа
+                $('#name').val(data['name'])
+                $('#phone').val(data['phone'])
+                $('#adress').val(data['adress'])
                 
+                $('#btnSaveOrder').show();
+
             } else {
                 alert(data['message']);
             }
@@ -205,6 +210,34 @@ function updateUserData()
             if (data['success']) {
                 $('#userLink').html(data['userName']);
                 alert (data['message']);
+            } else {
+                alert (data['message']);
+            }
+        }
+    });
+}
+
+
+
+// 
+// Сохранение заказа
+// 
+
+function saveOrder ()
+{
+    var postData = getData ('#frmOrder');
+        
+    $.ajax({
+        type: 'POST',
+        async: false,
+        url: "/cart/saveorder/",
+        data: postData,
+        dataType: 'json',
+        success: function (data){
+            if (data['success']){
+                alert (data['message']);
+                document.location = '/';
+                
             } else {
                 alert (data['message']);
             }
