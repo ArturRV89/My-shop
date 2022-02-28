@@ -67,3 +67,41 @@ function getCatById($catId)
     $rs = mysql_query ($sql);
     return mysql_fetch_assoc ($rs);
 }
+
+
+
+// получить все главные категории (категории которые не являются дочерними)
+// 
+// @return array массив категорий
+// 
+
+function getAllMainCategories ()
+{
+    $sql = "SELECT * 
+                FROM `categories`
+                WHERE `parent_id` = 0";
+    
+    $rs = mysql_query ($sql);
+    return createSmartyRsArray ($rs);
+}
+
+
+
+// добавление новой категории
+// @param string $catName Название категории
+// @param integer $catParentId ID родительской категории
+// @return integer id новой категории
+// 
+
+function insertCat ($catName, $catParentId = 0)
+{
+    $sql = "INSERT INTO `categories` (`parent_id`, `name`)
+                VALUES ('{$catParentId}', '{$catName}')";
+    
+    mysql_query ($sql);
+
+    // получаем id добавленной записи
+    $id = mysql_insert_id ();
+
+    return $id;
+}

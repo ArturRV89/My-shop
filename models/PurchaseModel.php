@@ -41,7 +41,7 @@ function setPurchaseForOrder ($orderId, $cart)
                   JOIN `products` AS `ps`
                   ON `pe`.product_id = `ps`.id
                   WHERE `pe`.order_id = {$orderId}";
-     d($sql);
+     
      $rs = mysql_query ($sql);
      return createSmartyRsArray ($rs);
  }

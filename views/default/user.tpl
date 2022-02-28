@@ -62,7 +62,13 @@
                 <td>{$smarty.foreach.orders.iteration}</td>
                 <td><a href="#" onclick="showProducts('{$item['id']}'); return false;">Показать товар заказа</a></td>
                 <td>{$item['id']}</td>
-                <td>{$item['status']}</td>
+                <td>
+                        {if $item['status'] == 0}
+                            Товар не оплачен 
+                        {else} 
+                            Оплачено 
+                        {/if}
+                </td>
                 <td>{$item['date_created']}</td>
                 <td>{$item['date_payment']}&nbsp;</td>
                 <td>{$item['comment']}</td>

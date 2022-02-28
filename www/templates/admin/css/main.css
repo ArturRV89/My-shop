@@ -24,13 +24,11 @@ body{
 #centerColumn{
 	width: 600px;
 	float: left;
-    padding-left: 90px;
 }
 
 #footer{
 	clear: both;
-	padding-top: 20px;
-
+     padding-top: 20px;
 }
 
 .menuCaption{
