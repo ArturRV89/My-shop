@@ -27,7 +27,21 @@ function setPurchaseForOrder ($orderId, $cart)
 
      // преобразовываем массив в строку
      $sql .= implode ($values, ', ');
-     
+
      $rs = mysql_query ($sql);
      return $rs;
 }
+
+
+
+ function getPurchaseForOrder ($orderId)
+ {
+     $sql = "SELECT `pe`.*, `ps`.`name`
+                  FROM `purchase` AS `pe`
+                  JOIN `products` AS `ps`
+                  ON `pe`.product_id = `ps`.id
+                  WHERE `pe`.order_id = {$orderId}";
+     d($sql);
+     $rs = mysql_query ($sql);
+     return createSmartyRsArray ($rs);
+ }

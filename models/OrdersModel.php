@@ -29,9 +29,12 @@ function makeNewOrder ($name, $phone, $adress)
 
      $rs = mysql_query ($sql);
 
-     // получить id созданного заказа
+     // получить id созданного заказа (оптимизировать!!!)
      if ($rs){
-         $sql = "SELECT id 
+
+        //  $lastID = mysql_insert_id(); ////////////
+
+         $sql = "SELECT `id` 
                     FROM `orders`
                     ORDER BY `id` DESC
                     LIMIT 1";
@@ -45,4 +48,36 @@ function makeNewOrder ($name, $phone, $adress)
           }
      } 
      return false;   
+}
+
+
+
+// получить список заказов с привязкой к продуктам для пользователя $userId
+// 
+// @param integer $userId ID пользователя
+// @return array массив заказов с привязкой к продуктам
+// 
+
+function getOrdersWithProductsByUser ($userId)
+{
+    $userId = intval ($userId);
+    $sql = "SELECT *
+                FROM `orders`
+                WHERE `user_id` = '{$userId}'
+                ORDER BY `id` 
+                DESC";
+
+    $rs = mysql_query ($sql);
+
+    $smartyRs = array();
+    while ($row = mysql_fetch_assoc ($rs)){
+        $rsCildren = getPurchaseForOrder ($row['id']);
+
+        if ($rsCildren){
+            $row['children'] = $rsCildren;
+            $smartyRs[] = $row;
+        }
+    }
+
+    return $smartyRs;
 }

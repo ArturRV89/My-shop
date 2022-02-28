@@ -189,6 +189,7 @@ function saveorderAction()
     $phone = isset ($_POST['phone']) ? $_POST['phone'] : null;
     $adress = isset ($_POST['adress']) ? $_POST['adress'] : null;
    
+    // создаем новый заказ и получаем его ID
     $orderId = makeNewOrder ($name, $phone, $adress);
 
     if ( ! $orderId){

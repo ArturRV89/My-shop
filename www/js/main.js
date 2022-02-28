@@ -110,6 +110,11 @@ function registerNewUser()
                 $('#userLink').attr('href', '/user/');
                 $('#userLink').html(data['userName']);
                 $('#userBox').show();
+
+                // страница заказа
+                $('#loginBox').hide();
+                $('#btnSaveOrder').show();
+
             } else {
                 alert(data['message']);
             }
@@ -243,4 +248,23 @@ function saveOrder ()
             }
         }
     });
+}
+
+
+
+// показать или спрятать данные о заказе
+// 
+// @param ID - id продукта
+// 
+
+function showProducts (id)
+{
+    var objName = "#purchasesForOrderId_" + id;
+    
+    if ($(objName) . css ('display') != 'table-row'){
+        $(objName) . show ();
+
+    } else {
+        $(objName) . hide ();
+    }
 }
