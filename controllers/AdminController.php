@@ -84,6 +84,7 @@ function categoryAction ($smarty)
 function updatecategoryAction ()
 {
     $itemId = $_POST['itemId'];
+    d($itemId);
     $parentId = $_POST['parentId'];
     $newName = $_POST['newName'];
 
@@ -97,6 +98,77 @@ function updatecategoryAction ()
         $resData['success'] = 0;
         $resData['message'] = 'Ошибка изменения данных категории';
     }
+
+    print json_encode ($resData);
+    return;
+}
+
+
+
+// страница управления товарами
+// 
+// @param type $smarty
+// 
+
+function productsAction ($smarty)
+{
+    $rsCategories = getAllCategories ();
+    $rsProducts = getProducts ();
+
+    $smarty->assign ('rsCategories', $rsCategories);
+    $smarty->assign ('rsProducts', $rsProducts);
+    $smarty->assign ('pageTitle', 'Управление сайтом');
+
+    loadTemplate ($smarty, 'adminHeader');
+    loadTemplate ($smarty, 'adminProducts');
+    loadTemplate ($smarty, 'adminFooter');
+}
+
+
+
+function addproductAction ()
+{
+    $itemName = $_POST['itemName'];
+    $itemPrice = $_POST['itemPrice'];
+    $itemDesc = $_POST['itemDesc'];
+    $itemCat = $_POST['itemCatId'];
+    
+    $res = insertProduct ($itemName, $itemPrice, $itemDesc, $itemCat);
+
+    if ($res){
+        $resData['success'] = 1;
+        $resData['message'] = 'Изменения успешно внесены';
+
+    } else {
+        $resData['success'] = 0;
+        $resData['message'] = 'Ошибка изменения данных';
+    }
+
+    print json_encode ($resData);
+    return;
+}
+
+
+
+function updateproductAction ()
+{
+     $itemId = $_POST['itemId'];
+     $itemName = $_POST['itemName'];
+     $itemPrice = $_POST['itemPrice'];
+     $itemStatus = $_POST['itemStatus'];
+     $itemDesc = $_POST['itemDesc'];
+     $itemCat = $_POST['itemCatId'];
+
+     $res = updateProduct ($itemId, $itemName, $itemPrice, $itemStatus, $itemDesc, $itemCat);
+
+     if ($res){
+        $resData['success'] = 1;
+        $resData['message'] = 'Изменения успешно внесены';
+
+     } else {
+        $resData['success'] = 0;
+        $resData['message'] = 'Ошибка изменения данных';
+     }
 
     print json_encode ($resData);
     return;
