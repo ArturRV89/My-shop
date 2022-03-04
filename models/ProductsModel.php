@@ -145,3 +145,11 @@ function updateProduct ($itemId, $itemName, $itemPrice, $itemStatus, $itemDesc, 
     $rs = mysql_query ($sql);
     return $rs;
 }
+
+
+
+function updateProductImage ($itemId, $newFileName)
+{
+     $rs = updateProduct ($itemId, null, null, null, null, null, $newFileName);
+     return $rs;
+}

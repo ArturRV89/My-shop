@@ -84,7 +84,6 @@ function categoryAction ($smarty)
 function updatecategoryAction ()
 {
     $itemId = $_POST['itemId'];
-    d($itemId);
     $parentId = $_POST['parentId'];
     $newName = $_POST['newName'];
 
@@ -172,4 +171,46 @@ function updateproductAction ()
 
     print json_encode ($resData);
     return;
+}
+
+
+
+// 
+// загрузка картинки
+// 
+
+function uploadAction ()
+{
+    $maxSize = 2 * 1024 * 1024;
+    
+    $itemId = $_POST['itemId'];
+    
+    // получаем расширение загружаемого файла
+    $ext = pathinfo ($_FILES['filename']['name'], PATHINFO_EXTENSION);
+    
+    // создаем имя файла
+    $newFileName = $itemId . '.' . $ext;
+
+    if ($_FILES['filename']['size'] > $maxSize){
+        print 'Размер файла превышает два мегабайта';
+        return;
+    }
+
+    // загружен ли файл
+    if (is_uploaded_file ($_FILES['filename']['tmp_name'])){
+    // если файл загружен то перемещаем его из временной директории в конечную
+        $res = move_uploaded_file ($_FILES['filename']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/images/products/' . $newFileName);
+       
+        if ($res){
+            
+            $res = updateProductImage ($itemId, $newFileName);
+               
+            if ($res){
+                redirect ('/admin/products/');
+            }
+        }
+
+    } else {
+        print 'Ошибка загрузки файла';
+    }
 }

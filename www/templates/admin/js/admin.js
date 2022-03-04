@@ -2,7 +2,8 @@
 // получение данных с формы
 // 
 
-function getData (obj_form) {
+function getData (obj_form) 
+{
      var hData = {};
      $ ('input, textarea, select', obj_form) . each (function(){
           if (this.name && this.name != '') {
@@ -19,8 +20,10 @@ function getData (obj_form) {
 // добавление новой категории
 // 
 
-function newCategory () {
+function newCategory () 
+{
      var postData = getData ('#blockNewCategory');
+
      $.ajax({
           type: 'POST',
           async: false,
@@ -45,7 +48,8 @@ function newCategory () {
 // обновление данных категории
 // 
 
-function updateCat (itemId) {
+function updateCat (itemId) 
+{
      var parentId = $('#parentId_' + itemId) . val()
      var newName = $('#itemName_' + itemId) . val();
      var postData = {itemId: itemId, parentId: parentId, newName: newName};
@@ -68,7 +72,8 @@ function updateCat (itemId) {
 // добавление нового продукта
 // 
 
-function addProduct () {
+function addProduct () 
+{
      var itemName = $('#newItemName') . val();
      var itemPrice = $('#newItemPrice') . val();
      var itemCatId = $('#newItemCatId') . val();
@@ -104,7 +109,8 @@ function addProduct () {
 // изменение данных продукта
 // 
 
-function updateProduct (itemId) {
+function updateProduct (itemId) 
+{
      var itemName = $('#itemName_' + itemId) . val();
      var itemPrice = $('#itemPrice_' + itemId) . val();
      var itemCatId = $('#itemCatId_' + itemId) . val();
@@ -113,7 +119,6 @@ function updateProduct (itemId) {
 
      if ( ! itemStatus){
           itemStatus = 1;
-          
      } else {
           itemStatus = 0;
      }
