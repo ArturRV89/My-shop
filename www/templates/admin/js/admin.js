@@ -137,3 +137,78 @@ function updateProduct (itemId)
      });
 
 }
+
+
+
+// 
+// показать товар заказа
+// 
+
+function showProducts (id) 
+{
+     var objName = $("#purchasesForOrderId_" + id);
+
+     if ($(objName) . css ('display') != 'table-row'){
+          $(objName) . show();
+     
+     } else {
+          $(objName) . hide();
+     }
+}
+
+
+
+// 
+// изменение статуса
+// 
+
+function updateOrderStatus (itemId)
+{
+     var status = $('#itemStatus_' + itemId) . attr ('checked');
+
+     if ( ! status) {
+          status = 0;
+     } else {
+          status = 1;
+     }
+
+     var postData = {itemId: itemId, status: status};
+
+     $.ajax({
+          type: 'POST',
+          async: false,
+          url: '/admin/setorderstatus/',
+          data: postData,
+          dataType: 'json',
+          success: function (data){
+               if ( ! data['success']){
+                    alert (data['message']);
+               } 
+          }
+     });
+}
+
+
+
+// 
+// изменение информации об оплате заказа
+// 
+
+function updateDatePayment (itemId) 
+{
+     var datePayment = $('#datePayment_' + itemId) . val();
+     var postData = {itemId: itemId, datePayment: datePayment};
+     
+     $.ajax({
+          type: 'POST',
+          async: false,
+          url: '/admin/setorderdatepayment/',
+          data: postData,
+          dataType: 'json',
+          success: function (data){
+               if ( ! data['success']){
+                    alert (data['message']);
+               } 
+          }
+     });
+}
