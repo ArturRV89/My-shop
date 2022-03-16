@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<products>
+     <product><id>1</id>
+     <category_id>3</category_id>
+     <name>GT-C3560</name>
+     <description>                        &lt;p&gt;Закругленные углы и окантовка  вносят стильный штрих в минималистичный дизайн телефона. Металлическая отделка смотрится  элегантно и современно. А благодаря небольшим размерам С3560 удобно лежит в руке и легко помещается в кармане.&lt;/p&gt;
+     &lt;br /&gt;
+
+     &lt;p&gt;Спецификации:&lt;/p&gt;
+     &lt;ul&gt;&lt;li&gt;Стандарты сети GSM и EDGE : GSM (850/900/1800/1900)&lt;/li&gt;&lt;li&gt;Стандарт сети 3G : N/A&lt;/li&gt;&lt;li&gt;Стандарт сети CDMA : N/A&lt;/li&gt;&lt;li&gt;TD-SCDMA Band : N/A&lt;/li&gt;&lt;/ul&gt;
+     </description>
+     <price>3000</price>
+     <image>1.png</image>
+     <status>1</status>
+     </product>
+
+     <product>
+     <id>3</id>
+     <category_id>3</category_id>
+     <name>GT-E2600</name>
+     <description>&lt;p&gt;Тонкий и изящный дизайн телефона E2600? широкий экран и пользовательский интерфейс Paragon UX обеспечивают удобство и комфорт в использовании.  Телефон оснащен интуитивно-понятным пользовательским интерфейсом.  &lt;/p&gt;
+     &lt;br /&gt;
+     &lt;p&gt;Спецификации:&lt;/p&gt;
+     &lt;ul&gt;&lt;li&gt;850 / 900 / 1800 / 1900 МГц GSM &amp;amp; EDGE Band&lt;/li&gt;&lt;li&gt;GPRS Network&amp;amp;Data: 850 / 900 / 1800 / 1900&lt;/li&gt;&lt;li&gt;EDGE Network&amp;amp;Data: 850 / 900 / 1800 / 1900&lt;/li&gt;&lt;li&gt;фирменная&lt;/li&gt;&lt;li&gt;Интернет браузерr ( NetFront 4.2)&lt;/li&gt;&lt;li&gt;JAVA™ SUN CLDC HotSpot Implementation 1.1 (MIDP 2.0) Platform&lt;/li&gt;&lt;li&gt;SAR 0,45 Вт./кг.&lt;/li&gt;&lt;/ul&gt;
+
+     &lt;a href="http://www.samsung.com/ru/consumer/mobile-devices/mobile-phones/hhp-gsm/GT-E2600ZKASER"&gt;http://www.samsung.com/ru/consumer/mobile-devices/mobile-phones/hhp-gsm/GT-E2600ZKASER&lt;/a&gt;
+     </description>
+     <price>5000</price>
+     <image>3.png</image>
+     <status>1</status>
+     </product>
+     
+</products>

@@ -269,3 +269,106 @@ function setorderdatepaymentAction ()
     print json_encode ($resData);
     return;
 }
+
+
+// 
+// создание xml 
+// 
+
+function createxmlAction ()
+{
+    $rsProducts = getProducts ();
+    
+    $xml = new DOMDocument ('1.0', 'utf-8');
+    $xmlProducts = $xml->appendChild ($xml->createElement ('products'));
+        
+    foreach ($rsProducts as $product){
+        $xmlProduct = $xmlProducts->appendChild ($xml->createElement ('product'));
+        
+        foreach ($product as $key => $val){
+            $xmlName = $xmlProduct->appendChild ($xml->createElement ($key));
+            $xmlName->appendChild ($xml->createTextNode ($val));
+        }
+    }
+    $xml->save ($_SERVER["DOCUMENT_ROOT"] . '/xml/products/products.xml');
+    print 'ok';
+}
+
+
+
+function uploadFile ($localFilename, $localPath = '/upload/')
+{
+    $maxSize = 2 * 1024 * 1024;
+    
+    // получаем расширение загружаемого файла
+    $ext = pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
+ 
+    // проверка расширений
+    $pathInfo = pathinfo ($localFilename);
+    if ($ext != $pathInfo['extension']){
+        print 'Ошибка расширения файла';
+        return false;
+    }
+
+    $newFileName = $pathInfo['filename'] . '_' . time() . '.' . $pathInfo['extension'];
+
+    if ($_FILES['userfile']['size'] > $maxSize){
+        print 'Превышен допустимый размер файла';
+        return false;
+    }
+
+    $path = $_SERVER['DOCUMENT_ROOT'] . $localPath;
+   
+    if ( ! file_exists ($path)){
+        mkdir ($path);
+    }
+
+    if (is_uploaded_file ($_FILES['userfile']['tmp_name'])){
+        $res = move_uploaded_file ($_FILES['userfile']['tmp_name'], $path . $newFileName);
+        return ($res == true) ? $newFileName : false;
+
+    } else {
+        return false;
+    }
+}
+
+
+
+// 
+// импорт xml файла
+//
+
+function loadfromxmlAction ()
+{
+    $localFilename = 'import_products.xml';
+    $localPath = '/xml/import/';
+
+    $successUpLoadFileName = uploadFile ($localFilename, $localPath);
+ 
+    if ( ! $successUpLoadFileName){
+        print 'С файлом что-то не так';
+        return;
+    }
+
+    $xmlFile = $_SERVER['DOCUMENT_ROOT'] . $localPath . $successUpLoadFileName;
+    $xmlProducts = simplexml_load_file ($xmlFile);
+
+    $products = array();
+    $i = 0;
+    foreach ($xmlProducts as $product){
+        $products[$i]['name'] = htmlspecialchars ($product->name);
+        $products[$i]['category_id'] = intval ($product->category_id);
+        $products[$i]['description'] = htmlentities ($product->description, ENT_QUOTES | ENT_IGNORE, "UTF-8");
+        $products[$i]['price'] = intval ($product->price);
+        $products[$i]['status'] = intval ($product->status);
+    $i++;
+    }
+    
+    $res = insertImportProducts ($products);
+
+    if ($res) {
+        redirect ('/admin/products/');
+    } else {
+        print 'Ошибка загрузки файла';
+    }
+}

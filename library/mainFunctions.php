@@ -43,11 +43,23 @@ function loadTemplate($smarty, $templateName)
 
 function d($value = null, $die = 1)
 {
-    print 'Debug: <br><pre>';
-    print_r ($value);
+    function debugOut ($a)
+    {
+        print '<br/><b>' 
+            . basename ($a['file']) . '<br/>'
+            . "&nbsp;<font color='red'>({$a['line']})</font>"
+            . "&nbsp;<font color='green'>({$a['function']})</font>"
+            . "&nbsp; --" . dirname ($a['file']);
+    }
+
+    print '<pre>';
+        $trace = debug_backtrace();
+        array_walk ($trace, 'debugOut');
+        print "\n\n";
+        print_r ($value);
     print '</pre>';
 
-    if ($die) die;
+    if ($die) exit();
 }
 
 

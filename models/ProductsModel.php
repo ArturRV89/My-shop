@@ -153,3 +153,28 @@ function updateProductImage ($itemId, $newFileName)
      $rs = updateProduct ($itemId, null, null, null, null, null, $newFileName);
      return $rs;
 }
+
+
+
+// вставить xml документ в базу данных
+// 
+// @param array 
+// 
+
+function insertImportProducts ($aProducts)
+{
+    if ( ! is_array ($aProducts)) return false;
+
+    $sql = "INSERT INTO `products`
+                (`name`, `category_id`, `description`, `price`, `status`)
+                VALUES ";
+
+    $cnt = count ($aProducts);
+    for ($i = 0; $i < $cnt; $i ++ ){
+        if ($i > 0) $sql .= ', ';
+        $sql .= "('" . implode("', '", $aProducts[$i]) . "')"; "<br/>";
+    }
+
+    $res = mysql_query ($sql);
+    return $res;
+}

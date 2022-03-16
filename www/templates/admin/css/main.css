@@ -1,6 +1,8 @@
 body{
 	padding: 0 ;
 	display: block;
+	background-color: rgb(231, 205, 173);
+	font-size: 19px;
 }
 
 .hideme{
@@ -15,6 +17,7 @@ body{
 #leftColumn{
 	width: 200px;
 	float: left;
+	padding-bottom: 300px;
 }
 
 #leftMenu, #loginBox, #registerBox{

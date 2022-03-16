@@ -23,7 +23,7 @@ define('TemplateAdminWebPath', "/templates/{$templateAdmin}/");
 
 
 
-// Инициализация шаблонизатора Smarty
+// Инициализация шаблонизатора Smarty                                                                                             
 // 
 // put full path to Smarty.class.php
 // 
